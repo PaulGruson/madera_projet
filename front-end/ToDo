@@ -1,0 +1,24 @@
+Done:
+
+
+
+//////////////////////////////////////////////////////
+
+ToDo:
+Pour résumer dans un premier temps nous allons créer toutes nos pages et nos différents composant.
+Nous mettrons en place le système de navigation
+Nous allons ensuite elaborer le css, au niveau de chaque composant, de chaque page et de l'app, nous ne mettrons pas
+en place Sass.
+Lorsque le back-end sera fonctionnel, grâce à axios et aux hooks nous pourrons requeter
+
+
+1- Création du composant Barre de Navigation
+2- Création de la page Accueil
+3- Création de la page ConceptionProjet
+4- Création du composant ListeDefilante
+5- Création de la page ConceptionProduit
+6- Création de la page Consultation
+7- Mise en place du CSS niveau App
+8- Mise en place du CSS niveau Page
+9- Mise en place du CSS niveau Composant
+10- Pour le moment on réaliser le site en statique, en attendant le back

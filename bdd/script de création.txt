@@ -1,0 +1,110 @@
+ 
+CREATE TABLE Composant (
+                composant_id INT AUTO_INCREMENT NOT NULL,
+                composant_nature VARCHAR(100) NOT NULL,
+                PRIMARY KEY (composant_id)
+);
+ 
+ 
+CREATE TABLE caracteristique (
+                caracteristique_id INT AUTO_INCREMENT NOT NULL,
+                composant_id INT NOT NULL,
+                caracteristique_nom VARCHAR(100) NOT NULL,
+                caracteristique_valeur VARCHAR(100) NOT NULL,
+                caracteristique_unite VARCHAR(100) NOT NULL,
+                PRIMARY KEY (caracteristique_id)
+);
+ 
+ 
+CREATE TABLE Module (
+                module_id INT AUTO_INCREMENT NOT NULL,
+                module_nature VARCHAR(100) NOT NULL,
+                PRIMARY KEY (module_id)
+);
+ 
+ 
+CREATE TABLE Module_Composant (
+                module_id INT NOT NULL,
+                composant_id INT NOT NULL,
+                PRIMARY KEY (module_id, composant_id)
+);
+ 
+ 
+CREATE TABLE Gamme (
+                gamme_id INT NOT NULL,
+                gamme_nature VARCHAR(100) NOT NULL,
+                PRIMARY KEY (gamme_id)
+);
+ 
+ 
+CREATE TABLE Projet (
+                projet_reference INT AUTO_INCREMENT NOT NULL,
+                gamme_id INT NOT NULL,
+                projet_date DATE NOT NULL,
+                projet_client VARCHAR(100) NOT NULL,
+                PRIMARY KEY (projet_reference)
+);
+ 
+ 
+CREATE TABLE Projet_Module (
+                module_id INT NOT NULL,
+                projet_reference INT NOT NULL,
+                nom_module VARCHAR (100)NOT NULL,
+                PRIMARY KEY (module_id, projet_reference)
+);
+ 
+ 
+CREATE TABLE Gamme_Module (
+                gamme_id INT NOT NULL,
+                module_id INT NOT NULL,
+                PRIMARY KEY (gamme_id, module_id)
+);
+ 
+ 
+ALTER TABLE Module_Composant ADD CONSTRAINT composant_module_composant_fk
+FOREIGN KEY (composant_id)
+REFERENCES Composant (composant_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+ 
+ALTER TABLE caracteristique ADD CONSTRAINT composant_caracteristique_fk
+FOREIGN KEY (composant_id)
+REFERENCES Composant (composant_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+ 
+ALTER TABLE Gamme_Module ADD CONSTRAINT module_gamme_module_fk
+FOREIGN KEY (module_id)
+REFERENCES Module (module_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+ 
+ALTER TABLE Module_Composant ADD CONSTRAINT module_module_composant_fk
+FOREIGN KEY (module_id)
+REFERENCES Module (module_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+ 
+ALTER TABLE Projet_Module ADD CONSTRAINT module_projet_module_fk
+FOREIGN KEY (module_id)
+REFERENCES Module (module_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+ 
+ALTER TABLE Gamme_Module ADD CONSTRAINT gamme_gamme_module_fk
+FOREIGN KEY (gamme_id)
+REFERENCES Gamme (gamme_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+ 
+ALTER TABLE Projet ADD CONSTRAINT gamme_projet_fk
+FOREIGN KEY (gamme_id)
+REFERENCES Gamme (gamme_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+ 
+ALTER TABLE Projet_Module ADD CONSTRAINT projet_projet_module_fk
+FOREIGN KEY (projet_reference)
+REFERENCES Projet (projet_reference)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
