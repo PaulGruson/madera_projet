@@ -1,0 +1,25 @@
+/* CSS pour la barre de navigation */
+.barreNavigation {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  .barreNavigation > li {
+    float: left;
+  }
+  
+  .barreNavigation > li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  .barreNavigation > li a:hover {
+    background-color: #111;
+  }
+  /* Fin du CSS pour la barre de navigation  */

@@ -1,16 +1,16 @@
 import React from 'react'
+import './Accueil.css'
 
 import { BarreNavigation } from '../../Components/BarreNavigation'
 
 
 function Accueil() {
     return (
-        <section>
-            {/* <header active="accueil"> */}
-            <p>sdfergze(g</p>
-            <p>sdfergze(g</p>
-            < BarreNavigation />
-        </section>
+        <form className="accueil login-form">
+            <h1>Madera</h1>
+            <button type="submit">Conception d'un devis</button>
+            <button type="submit">Consulter un devis</button>
+        </form>
     )
 }
 

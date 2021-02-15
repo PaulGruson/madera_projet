@@ -1,13 +1,13 @@
 import React from 'react'
-
+import './barreNavigation.css'
 
 function BarreNavigation() {
     return (
-        <ul>
-            <li><a class="active" href="#home">Home</a></li>
-            <li><a href="#news">News</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#about">About</a></li>
+        <ul className="barreNavigation">
+            <li><a className="active" href="#home">Accueil</a></li>
+            <li><a href="#news">Conception devis</a></li>
+            <li><a href="#contact">Consulter devis</a></li>
+            <li><a href="#about">Configuration</a></li>
         </ul>
     )
 }

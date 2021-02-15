@@ -6,6 +6,7 @@ import { ConceptionProduit } from "./Pages/Conception/ConceptionProduit"
 import { Consultation } from "./Pages/Consultation/Consultation"
 
 import './App.css'
+import { BarreNavigation } from "./Components/BarreNavigation"
 
 function App() {
   return (
