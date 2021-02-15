@@ -1,6 +1,6 @@
 import React from 'react'
-import './barreNavigation.css'
-
+import './BarreNavigation.css'
+ 
 function BarreNavigation() {
     return (
         <ul className="barreNavigation">
