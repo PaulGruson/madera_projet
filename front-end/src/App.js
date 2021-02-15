@@ -11,7 +11,7 @@ import { BarreNavigation } from "./Components/BarreNavigation"
 function App() {
   return (
     <div>
-      < Accueil />
+      < ConceptionProjet />
     </div>
     // <BrowserRouter>
     //   <Switch>
