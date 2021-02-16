@@ -7,11 +7,12 @@ import { Consultation } from "./Pages/Consultation/Consultation"
 
 import './App.css'
 import { BarreNavigation } from "./Components/BarreNavigation"
+import { ConceptionDevis } from "./Pages/Conception/ConceptionDevis"
 
 function App() {
   return (
     <div>
-      < ConceptionProjet />
+      < ConceptionDevis />
     </div>
     // <BrowserRouter>
     //   <Switch>
