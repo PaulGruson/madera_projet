@@ -11,18 +11,15 @@ import { ConceptionDevis } from "./Pages/Conception/ConceptionDevis"
 
 function App() {
   return (
-    <div>
-      < ConceptionDevis />
-    </div>
-    // <BrowserRouter>
-    //   <Switch>
-    //     <Route exact path="/accueil" component={Accueil} />
-    //     <Route exact path="/conceptionprojet" component={ConceptionProjet} />
-    //     <Route exact path="/conceptionproduit" component={ConceptionProduit} />
-    //     <Route exact path="/consultation" component={Consultation} />
-    //     <Route path="/" component={Accueil} />
-    //   </Switch>
-    // </BrowserRouter>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/accueil" component={Accueil} />
+        <Route exact path="/conceptionprojet" component={ConceptionProjet} />
+        <Route exact path="/conceptionproduit" component={ConceptionProduit} />
+        <Route exact path="/consultation" component={Consultation} />
+        <Route path="/" component={Accueil} />
+      </Switch>
+    </BrowserRouter>
   )
 }
 

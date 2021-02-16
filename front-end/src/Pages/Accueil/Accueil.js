@@ -3,14 +3,24 @@ import './Accueil.css'
 
 import { BarreNavigation } from '../../Components/BarreNavigation'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClipboard, faPencilRuler } from '@fortawesome/free-solid-svg-icons'
 
 function Accueil() {
     return (
-        <form className="accueil login-form">
-            <h1>Madera</h1>
-            <button type="submit">Conception d'un devis</button>
-            <button type="submit">Consulter un devis</button>
-        </form>
+        <div>
+            <BarreNavigation />
+            <section className="accueil">
+                <a className="accueil-container responsive-box shadow transform text-title2" href="conceptionprojet">
+                    Concevoir un devis
+                    <FontAwesomeIcon icon={faPencilRuler} size='4x' />
+                </a>
+                <a className="accueil-container responsive-box shadow transform text-title2" href="conceptionprojet">
+                    Consulter un devis
+                    <FontAwesomeIcon icon={faClipboard} size='4x' />
+                </a>
+            </section>
+        </div>
     )
 }
 

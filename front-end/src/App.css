@@ -1,17 +1,8 @@
-.App {
-  text-align: center;
+body {
+  min-height: 100vh;
+  /* background: #eceffc; */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
   background-color: #282c34;
@@ -24,17 +15,70 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.App {
+  height: 100%;
+  text-align: center;
+}
+.text-primary-color{
+  color:rgba(30, 146, 137, 1) !important
+}
+.bg-primary-color{
+  background-color:rgba(60, 172, 186, 0.04) !important;
+}
+.text-secondary-color{
+  color:rgba(30, 146, 137, 0.5) !important
+}
+.text-title1{
+  font-size: 1.8rem;
+  font-weight: 350;
+}
+.text-title2{
+  font-size: 1.3rem;
+  font-weight: 350;
+  text-decoration:none
+}
+.responsive-box{
+  color: darkgray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background: white;
+  border-radius: 15px;
+  width: 40vw;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+.shadow {
+  box-shadow: 0 0 6px 0 #36383a;
+}
+.button{
+  min-height: 35px;
+  font-size: 20px;
+  background-color: rgba(118, 112, 132, 0.8);
+  color: white;
+  border-style: none
+}
+.button:hover{
+  background-color: rgba(118, 112, 132, 0.4);
+  color: rgba(118, 112, 132, 0.8);
+}
+.transform:hover{
+  transform: scale(1.03);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+@media (max-width: 1500px) {
+  .responsive-box{
+    width: 70vw;
   }
 }
+
+@media (max-width: 900px) {
+  .responsive-box{
+    width: 80vw;
+  }
+}
+
+
 
 

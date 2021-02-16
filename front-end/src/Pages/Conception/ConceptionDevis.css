@@ -1,4 +1,56 @@
-html, body {
+    .conception{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-between;
+    min-height: 100vh;
+    }
+
+    .conception-box-title{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .conception-input{
+        width: 55%;
+        margin: 15px;
+        padding: 2px;
+        padding-left: 15px;
+        border-width: 0px;
+        border-bottom-width: 2px;
+        border-radius: 7px;
+        border-color: lightgrey;
+        font-size: 16px;  
+    }
+
+
+    .conception-input:focus
+    {
+        outline:  none;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* html, body {
     min-height: 100%;
     }
     body, div, form, input, label { 
@@ -124,4 +176,4 @@ html, body {
     display:block;
     padding-bottom:5px;
     }
-    }
+    } */

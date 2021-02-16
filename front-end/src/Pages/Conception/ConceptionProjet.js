@@ -1,6 +1,9 @@
 import React from 'react'
 import { BarreNavigation } from '../../Components/BarreNavigation'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClipboard, faPencilRuler } from '@fortawesome/free-solid-svg-icons'
+
 function ConceptionProjet(props) {
 
     const {
@@ -11,49 +14,33 @@ function ConceptionProjet(props) {
         <body>
             < BarreNavigation />
             <section id="conceptionProjet" className="conception">
-                <h1>Conception de devis</h1>
-                <div classname="conception-box">
-                    <h2>Projet</h2>
-                    <div>
-                        <label for="nomDuProjet">Nom du projet</label>
-                        <input id="nomDuProjet" type="text" name="nomDuProjet" />
+                <h1 className="text-title1">Conception de devis</h1>
+                <div className="conception-box responsive-box shadow ">
+                    <div className="conception-box-title">
+                        <FontAwesomeIcon icon={faPencilRuler} size='2x' />
+                        <h2 className="text-title2">Projet</h2>
                     </div>
-                    <div>
-                        <label for="nomDuProjet">Référence du projet</label>
-                        <input id="nomDuProjet" type="text" name="nomDuProjet" />
-                    </div>
-                    <div>
-                        <label for="nomDuProjet">Date</label>
-                        <input id="nomDuProjet" type="date" name="nomDuProjet" />
-                    </div>
-                    <div>
-                        <label for="gamme">Gamme</label>
-                        <select id="gamme" name="game" >
-                            <option value="gamme1">Gamme1</option>
-                            <option value="gamme2">Gamme2</option>
-                            <option value="gamme3">Gamme3</option>
-                        </select>
-                    </div>
+                    <input className="conception-input" id="nomDuProjet" placeholder="Nom du projet" type="text" name="nomDuProjet" />
+                    <input className="conception-input" id="referenceDuProjet" placeholder="Référence du projet" type="text" name="referenceDuProjet" />
+                    <input className="conception-input" id="nomDuProjet" placeholder="date" type="date" name="nomDuProjet" />
+                    <select className="conception-input" id="gamme" name="game" >
+                        <option value="" disabled selected hidden>Selectionner une gamme</option>
+                        <option value="gamme1">Gamme1</option>
+                        <option value="gamme2">Gamme2</option>
+                        <option value="gamme3">Gamme3</option>
+                    </select>
                 </div>
-                <div classname="conception-box">
-                    <h2>Client</h2>
-                    <div>
-                        <label for="nomDuClieny">Nom du client</label>
-                        <input id="nomDuClient" type="text" name="nomDuClient" />
+                <div className="conception-box responsive-box shadow">
+                    <div className="conception-box-title">
+                        <FontAwesomeIcon icon={faPencilRuler} size='2x' />
+                        <h2 className="text-title2">Client</h2>
                     </div>
-                    <div>
-                        <label for="prenomDuClient">Prénom du client</label>
-                        <input id="prenomDuClient" type="text" name="prenomDuClient" />
-                    </div>
-                    <div>
-                        <label for="adresseDuClient">Adrresse du client</label>
-                        <input id="adresseDuClient" type="text" name="adresseDuClient" />
-                    </div>
-                    <div>
-                        <label for="mailDuClient">Mail du client</label>
-                        <input id="mailDuClient" type="text" name="mailDuClient" />
-                    </div>
+                    <input className="conception-input" id="nomDuClient" placeholder="Nom" type="text" name="nomDuClient" />
+                    <input className="conception-input" id="prenomDuClient" placeholder="Prénomt" type="text" name="prenomDuClient" />
+                    <input className="conception-input" id="adresseDuClient" placeholder="Adresse" type="text" name="adresseDuClient" />
+                    <input className="conception-input" id="mailDuClient" placeholder="Courriel" type="text" name="mailDuClient" />
                 </div>
+                <button className="responsive-box button shadow transform">Créer le projet</button>
             </section>
         </body>
     )
