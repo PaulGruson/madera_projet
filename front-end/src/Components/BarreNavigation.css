@@ -5,6 +5,9 @@
     padding: 0;
     overflow: hidden;
     background-color: #333;
+    position: fixed;
+    top: 0;
+    width: 100%;
   }
   
   .barreNavigation > li {
@@ -22,4 +25,10 @@
   .barreNavigation > li a:hover {
     background-color: #111;
   }
+
+.main {
+  padding: 16px;
+  margin-top: 30px;
+  height: 1500px;
+}
   /* Fin du CSS pour la barre de navigation  */
