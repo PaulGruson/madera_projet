@@ -9,8 +9,9 @@ function ConceptionDevis(props) {
     } = props
 
     return (
-        <div className="conceptionDevis">
-            < BarreNavigation />
+        <div>
+        < BarreNavigation />
+        <div className="conceptionDevis">  
             <div className="projet">
                 <form action="/">
                     <fieldset className="field">
@@ -64,6 +65,7 @@ function ConceptionDevis(props) {
                 </form>
             </div>
         </div>
+    </div>
     )
 }
 
