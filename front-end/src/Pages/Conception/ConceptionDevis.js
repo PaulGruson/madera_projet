@@ -9,60 +9,61 @@ function ConceptionDevis(props) {
     } = props
 
     return (
-        <body>
+        <div className="conceptionDevis">
             < BarreNavigation />
-            <div class="testbox">
+            <div className="projet">
                 <form action="/">
-                    <hr/><hr/>
-                    <fieldset>
+                    <fieldset className="field">
                         <legend>Projet</legend>
-                        <div class="item">
+                        <div class="item" className="champ">
                             <label for="name">Nom du projet<span>*</span></label>
-                            <input id="name" type="text" name="text" required />
+                            <input id="name" type="text" name="nomProjet" required />
                         </div>
-                        <div class="item">
-                            <label for="address">Référence du projet<span>*</span></label>
-                            <input id="address" type="text" name="text" required />
+                        <div class="item" className="champ">
+                            <label for="referenceProjet">Référence du projet<span>*</span></label>
+                            <input id="referenceProjet" type="text" name="refProjet" required />
                         </div>
-                        <div class="item">
-                            <label for="bdate">Date de création<span>*</span></label>
-                            <input id="bdate" type="date" name="bdate" required />
+                        <div class="item" className="champ">
+                            <label for="date">Date de création<span>*</span></label>
+                            <input id="date" type="date" name="bdate" required />
                             <i class="fas fa-calendar-alt"></i>
                         </div>
-                        <select>
-                            <option selected value="" disabled selected>La gamme du projet</option>
-                            <option value="1">Gamme premium</option>
-                            <option value="2">Gamme standard</option>
-                            <option value="3">Gamme eco</option>
-                        </select>
+                        <div className="selectGamme champ">
+                            <select>
+                                <option selected value="" disabled selected>La gamme du projet</option>
+                                <option value="1">Gamme premium</option>
+                                <option value="2">Gamme standard</option>
+                                <option value="3">Gamme eco</option>
+                            </select>
+                        </div>
                     </fieldset>
                     <hr />
-                    <fieldset>
+                    <fieldset className="field">
                         <legend>Client</legend>
-                        <div class="item">
+                        <div class="item" className="champ">
                             <label for="name">Nom<span>*</span></label>
                             <div class="name-item">
-                                <input id="name" type="text" name="name" placeholder="Prénom" required />
+                                <input id="prenom" type="text" name="prenom" placeholder="Prénom" required />
                                 <input id="name" type="text" name="name" placeholder="Nom" required />
                             </div>
                         </div>
-                        <div class="item">
+                        <div class="item" className="champ">
                             <label for="email">Email<span>*</span></label>
-                            <input id="email" type="text" name="text" required />
+                            <input id="email" type="text" name="email" required />
                         </div>
-                        <div class="item">
-                            <label for="position">Adresse<span>*</span></label>
-                            <input id="position" type="text" name="text" required />
+                        <div class="item" className="champ">
+                            <label for="adresse">Adresse<span>*</span></label>
+                            <input id="adresse" type="text" name="adresse" required />
                         </div>
-                        <fieldset>
-                            <div class="btn-block">
+                        <fieldset className="field">
+                            <div className="btn-block">
                                 <button type="submit" href="/">Rechercher</button>
                             </div>
                         </fieldset>
                     </fieldset>
                 </form>
             </div>
-        </body>
+        </div>
     )
 }
 
