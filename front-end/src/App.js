@@ -9,6 +9,9 @@ import './App.css'
 import { BarreNavigation } from "./Components/BarreNavigation"
 import { ConceptionDevis } from "./Pages/Conception/ConceptionDevis"
 
+// Import des icones
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 function App() {
   return (
     <BrowserRouter>

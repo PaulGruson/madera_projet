@@ -1,4 +1,5 @@
 import React from 'react'
+import { BarreNavigation } from '../../Components/BarreNavigation'
 
 function Consultation(props) {
 
@@ -7,9 +8,10 @@ function Consultation(props) {
     } = props
 
     return (
-        <div>
+        <body>
+        <BarreNavigation />
         <p>Consultation</p>
-        </div>
+        </body>
     )
 }
 

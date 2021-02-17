@@ -15,7 +15,7 @@ function Accueil() {
                     Concevoir un devis
                     <FontAwesomeIcon icon={faPencilRuler} size='4x' />
                 </a>
-                <a className="accueil-container responsive-box shadow transform text-title2" href="conceptionprojet">
+                <a className="accueil-container responsive-box shadow transform text-title2" href="consultation">
                     Consulter un devis
                     <FontAwesomeIcon icon={faClipboard} size='4x' />
                 </a>
