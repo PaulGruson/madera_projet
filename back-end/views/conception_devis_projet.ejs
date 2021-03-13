@@ -1,0 +1,71 @@
+
+<% include('header') %> 
+
+<div>
+    <a href="/">- Accueil -</a>
+    <a href="/conception_devis_projet">- Conception devis -</a>
+    <a href="/consultation_devis">- Consulter devis -</a>
+    <a href="">- Configuration -</a>
+</div>
+
+<h1>Conception devis</h1>
+
+<!-- message d'information -->
+<% if(locals.flash && locals.flash.error) { %> 
+<div>
+    <%= flash.error %>
+</div>
+<% } %> 
+
+<% if(locals.flash && locals.flash.success) { %> 
+<div>
+    <%= flash.success %>
+</div>
+<% } %> 
+
+
+<div>
+    <form action="/conception_devis_projet" method="post">
+        <div>
+            <h2>Projet</h2>
+
+            <label for="projet_name">Nom du projet</label>
+            <input name="projet_name" type="text">
+            <br>
+            <label for="gamme">Gamme</label>
+            <select name="gamme">
+                <option value="">-- Sélectionner une gamme -- </option>
+
+                <!-- Liste déroulante avec les gammes disponibles -->
+                <% for (gamme of gammes) { %> 
+
+                    <div>
+                        <option value="<%= gamme.gamme_id %>"><%= gamme.gamme_nature %> </option>
+                    </div>
+            
+                <% } %> 
+
+            </select>
+        </div>
+
+        <div>
+            <h2>Client</h2>
+
+            <label for="client_name">Nom</label>
+            <input name="client_name" type="text">
+            <br>
+            <label for="client_first_name">Prénom</label>
+            <input name="client_first_name" type="text">
+            <br>
+            <label for="client_adress">Adresse</label>
+            <input name="client_adress" type="text">
+            <br>
+            <label for="client_email">Email</label>
+            <input name="client_email" type="email">
+        </div>
+        <br>
+        <button type="submit">Ajouter des produits</button>
+    </form>
+</div>
+
+<% include('footer') %> 

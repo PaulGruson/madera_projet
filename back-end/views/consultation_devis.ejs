@@ -1,0 +1,40 @@
+
+<% include('header') %> 
+
+<div>
+    <a href="localhost:3000">- Accueil -</a>
+    <a href="localhost:3000/conception_devis_projet">- Conception devis -</a>
+    <a href="localhost:3000/consultation_devis">- Consulter devis -</a>
+    <a href="">- Configuration -</a>
+</div>
+
+<h1>Consultation devis</h1>
+
+<!-- message d'information -->
+<% if(locals.flash && locals.flash.error) { %> 
+<div>
+    <%= flash.error %>
+</div>
+<% } %> 
+
+<% if(locals.flash && locals.flash.success) { %> 
+<div>
+    <%= flash.success %>
+</div>
+<% } %> 
+
+<div>
+    <h3>Projets</h3>
+
+    <% for (projet of projets) { %> 
+
+        <div>
+            <%= projet.projet_reference %> + <%= projet.gamme_id %> + <%= projet.projet_date %> + <%= projet.projet_client %>
+        </div>
+
+    <% } %> 
+
+</div>
+
+
+<% include('footer') %> 

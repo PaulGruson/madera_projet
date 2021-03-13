@@ -1,0 +1,154 @@
+
+<%- include('header.ejs') %> 
+
+<style>
+    
+</style>
+
+<div>
+    <a href="/">- Accueil -</a>
+    <a href="/conception_devis_projet">- Conception devis -</a>
+    <a href="/consultation_devis">- Consulter devis -</a>
+    <a href="">- Configuration -</a>
+</div>
+
+<h1>Conception devis</h1>
+
+<!-- message d'information -->
+<% if(locals.flash && locals.flash.error) { %> 
+<div>
+    <%= flash.error %>
+</div>
+<% } %> 
+
+<% if(locals.flash && locals.flash.success) { %> 
+<div>
+    <%= flash.success %>
+</div>
+<% } %> 
+
+<div>
+    <form action="/conception_devis_produit" method="post" id="formProduits">
+        <div>
+            <h2>Produits</h2>
+
+            <label for="modele">Modèle</label>
+            <div>
+                <select name="module" id="select_module">
+                    <option value="">-- Sélectionner un module --</option>
+
+                    <% for (module of modules) { %> 
+                        <option value="<%= module.row.module_id %>"><%= module.row.module_nature %> </option>
+                    <% } %>
+        
+                </select>
+            </div>
+            <br>
+            <label for="modele_name">Nom du modèle</label>
+            <input name="modele_name" type="text" id="module_name">
+            <br>
+            
+            <!-- form adapté au modèle -->
+            <p>Composants</p>
+            <div id="composantsListe">
+                <!-- Liste des composants -->
+            </div>
+
+        </div>
+        <br>
+
+        <div style="border: solid black 1px;" onclick="ajoutProduit()"> Ajouter le produit </div>
+
+        <!-- Liste des produits ajoutés -->
+        <div>
+            <h3>Produits</h3>
+            <ul id="produitsListe">
+                
+            </ul>
+        </div>
+
+        <div style="border: solid black 1px;" onclick="envoisForm()"> Validation du formulaire </div>
+
+    </form>
+
+</div>
+
+<script>
+   
+   // Affichage des composants du module sélectionné
+    document.getElementById("select_module").onchange = changeListener;
+    function changeListener(){
+        let composantsListe = document.getElementById("composantsListe");
+        var value = this.value;
+
+        // Vider composantsListe
+        if(composantsListe.innerHTML !== null){
+            composantsListe.innerHTML = "";
+        }
+        
+        // On met en lumière ceux en liens avec le modèle choisi dans composantsListe
+        var htmlContent = "";
+
+        '<% for (module of modulesDetail) { %>'
+            if('<%= module.row.module_id %>' == value){
+                htmlContent = htmlContent + "<div><%= module.row.composant_nature %></div>";
+            } 
+        '<% } %>'
+
+        //console.log("htmlContent = "+htmlContent);
+        composantsListe.innerHTML = htmlContent;
+        //htmlContent = "";
+
+    }
+
+    // Ajouter un produit en session
+    function ajoutProduit() {
+        let module_name = document.getElementById("module_name");
+        let produitsListe = document.getElementById("produitsListe");
+        let select_module = document.getElementById("select_module");
+
+        if(module_name.value != null && module_name.value != "" && select_module.selectedIndex != 0){
+
+            var produitDiv = document.createElement('li');
+            produitDiv.innerHTML = /*select_module.options[select_module.selectedIndex].text + " - " +*/ module_name.value;
+            produitDiv.className = "produit " + select_module.value;
+
+            //Insert de la div dans le container produitsListe
+            produitsListe.appendChild(produitDiv);
+
+            //Réinitialisation du form
+            select_module.selectedIndex = 0;
+            module_name.value = "";
+
+        } else {
+            window.alert("Vous n'avez pas électionné le module ou entré son nom personnalisé (exemple : 'Mur Extérieur Nord 1')");
+        }
+    }
+
+    // Envois du formulaire global pour enregistrement du devis en BDD
+    function envoisForm() {
+        //Récupération de l'id du devis associé en BDD depuis le response
+
+        //Récupération des produits (tableau avec classes et nom du module)
+        let produits = document.getElementsByClassName("produit");
+
+        var htmlContent = "";
+
+        for (let index = 0; index < produits.length; index++) {
+            //const element = produitsListe[index].textContent;
+            //const element = produitsListe[index].className.toString().substr(7);
+
+            htmlContent = htmlContent + "<input type='text' id='produit' >" + produits[index].textContent + "'<input/>";
+
+        }
+
+        produitsListe.innerHTML = "";
+        produitsListe.innerHTML = htmlContent;
+
+        //document.forms["formProduits"].submit();
+    }
+
+
+</script>
+
+<%- include('footer') %> 
