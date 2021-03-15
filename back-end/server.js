@@ -71,7 +71,7 @@ app.get('/conception_devis_produit', (request, response) => {
 
     Gamme.getModulesDetailsFromGamme(request.session.gamme_id, function (modulesDetails) {
 
-      response.render('conception_devis_produit', {modules : modules, modulesDetail : modulesDetails} )
+      response.render('conception_devis_produit', {modules : modules, modulesDetail : modulesDetails, projet_reference : request.session.projet_reference} )
   
     })
   })
@@ -109,8 +109,6 @@ app.post('/conception_devis_projet', (request, response) => {
     
   } else {
 
-    //console.log(request.body)
-
     const Projet = require('./models/projet')
     // Function asynchrone
     /**
@@ -128,21 +126,41 @@ app.post('/conception_devis_projet', (request, response) => {
       // On passe l'id de la gamme en SESSION pour la récupérer dans le get
       request.session.gamme_id = request.body.gamme
 
-      //console.log("POST /coneption_devis_projet")
-      response.redirect('/conception_devis_produit')
-      
+      Projet.getLastId(function (projet_reference) {
+
+        request.session.projet_reference = projet_reference
+
+        response.redirect('/conception_devis_produit')
+      })
     })
 
   }
-
 })
 
 // POST de CONCEPTION DEVIS PRODUIT, envois des données en BDD et retour sur ACCUEIL
 app.post('/conception_devis_produit', (request, response) => {
-  const produits = request.body.produit
-  console.log(produits + "--ID");
 
-  response.redirect('/')
+  console.dir(request.body)
+
+  let projet_reference = request.body.projet_reference
+
+  var produits = {}
+  let index = 0
+  for(var key in request.body) {
+    //console.log(" key : " + key + "et sa valeur : " + request.body[key])
+    
+    if(index >= 3){
+      produits[key] = request.body[key]
+    }
+
+    index ++
+  }
+
+  for (var key in produits ){
+    console.log(key, produits[key])
+  }
+
+  //response.redirect('/')
 })
 
 app.listen(3000)

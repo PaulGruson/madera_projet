@@ -25,7 +25,7 @@
 <div>
     <%= flash.success %>
 </div>
-<% } %> 
+<% } %>
 
 <div>
     <form action="/conception_devis_produit" method="post" id="formProduits">
@@ -45,7 +45,7 @@
             </div>
             <br>
             <label for="modele_name">Nom du modèle</label>
-            <input name="modele_name" type="text" id="module_name">
+            <input name="modele_name" type="text" id="module_name" onkeypress="verifierCaracteres(event); return false;">
             <br>
             
             <!-- form adapté au modèle -->
@@ -62,9 +62,9 @@
         <!-- Liste des produits ajoutés -->
         <div>
             <h3>Produits</h3>
-            <ul id="produitsListe">
+            <div id="produitsListe">
                 
-            </ul>
+            </div>
         </div>
 
         <div style="border: solid black 1px;" onclick="envoisForm()"> Validation du formulaire </div>
@@ -109,7 +109,7 @@
 
         if(module_name.value != null && module_name.value != "" && select_module.selectedIndex != 0){
 
-            var produitDiv = document.createElement('li');
+            var produitDiv = document.createElement('div');
             produitDiv.innerHTML = /*select_module.options[select_module.selectedIndex].text + " - " +*/ module_name.value;
             produitDiv.className = "produit " + select_module.value;
 
@@ -131,23 +131,38 @@
 
         //Récupération des produits (tableau avec classes et nom du module)
         let produits = document.getElementsByClassName("produit");
+        //console.log("Produits : "+produits);
 
         var htmlContent = "";
 
+        // Ajout de l'id du projet
+        htmlContent = htmlContent + "<label for='projet_reference'></label> <input type='text' name='projet_reference' value='<%= projet_reference[0].row.last_projet_reference %>'><input/>";
+
         for (let index = 0; index < produits.length; index++) {
-            //const element = produitsListe[index].textContent;
-            //const element = produitsListe[index].className.toString().substr(7);
-
-            htmlContent = htmlContent + "<input type='text' id='produit' >" + produits[index].textContent + "'<input/>";
-
+            htmlContent = htmlContent + "<label for='" + produits[index].textContent + "'></label> <input type='text' name='" + produits[index].textContent + "' value='" + produits[index].className.toString().substr(8) + "' ><input/>";
         }
 
-        produitsListe.innerHTML = "";
-        produitsListe.innerHTML = htmlContent;
+        document.getElementById("produitsListe").innerHTML = "";
+        document.getElementById("produitsListe").innerHTML = htmlContent;
 
-        //document.forms["formProduits"].submit();
+        document.forms["formProduits"].submit();
     }
 
+    // Function qui évite les ' et les " dans le nom du module
+    function verifierCaracteres(event) {
+	 		
+        var keyCode = event.which ? event.which : event.keyCode;
+        var touche = String.fromCharCode(keyCode);
+                
+        var champ = document.getElementById('module_name');
+                
+        var caracteres = '\'"';
+                
+        if(caracteres.indexOf(touche) == -1) {
+            champ.value += touche;
+        }
+                
+    }
 
 </script>
 
