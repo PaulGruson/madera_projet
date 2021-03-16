@@ -1,15 +1,17 @@
+<%- include('head') %>
 
-<%- include('header') %> 
+    <%- include('header') %>
 
-<div>
-    <a href="/">- Accueil -</a>
-    <a href="/conception_devis_projet">- Conception devis -</a>
-    <a href="/consultation_devis">- Consulter devis -</a>
-    <a href="">- Configuration -</a>
-</div>
+        <section class="accueil">
+            <a class="accueil-container responsive-box shadow transform text-title2" href="/conception_devis_projet">
+            Concevoir un devis
+            <i class="accueil-icone fas fa-pencil-ruler"></i>
+        </a>
+            <a class="accueil-container responsive-box shadow transform text-title2" href="/consultation_devis">
+            Consulter un devis
+            <i class="accueil-icone fas fa-clipboard"></i>
+        </a>
+        </section>
 
-<h1>Accueil</h1>
 
-
-
-<%- include('footer') %> 
+        <%- include('footer') %>

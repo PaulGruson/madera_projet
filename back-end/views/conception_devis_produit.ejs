@@ -1,40 +1,34 @@
+<%- include('head.ejs') %>
 
-<%- include('header.ejs') %> 
+    <%- include('header') %>
 
-<style>
-    
-</style>
+        <style>
 
-<div>
-    <a href="/">- Accueil -</a>
-    <a href="/conception_devis_projet">- Conception devis -</a>
-    <a href="/consultation_devis">- Consulter devis -</a>
-    <a href="">- Configuration -</a>
-</div>
+        </style>
 
-<h1>Conception devis</h1>
+        <h1>Conception devis</h1>
 
-<!-- message d'information -->
-<% if(locals.flash && locals.flash.error) { %> 
-<div>
-    <%= flash.error %>
-</div>
-<% } %> 
-
-<% if(locals.flash && locals.flash.success) { %> 
-<div>
-    <%= flash.success %>
-</div>
-<% } %>
-
-<div>
-    <form action="/conception_devis_produit" method="post" id="formProduits">
-        <div>
-            <h2>Produits</h2>
-
-            <label for="modele">Modèle</label>
+        <!-- message d'information -->
+        <% if(locals.flash && locals.flash.error) { %>
             <div>
-                <select name="module" id="select_module">
+                <%= flash.error %>
+            </div>
+            <% } %>
+
+                <% if(locals.flash && locals.flash.success) { %>
+                    <div>
+                        <%= flash.success %>
+                    </div>
+                    <% } %>
+
+                        <div>
+                            <form action="/conception_devis_produit" method="post" id="formProduits">
+                                <div>
+                                    <h2>Produits</h2>
+
+                                    <label for="modele">Modèle</label>
+                                    <div>
+                                        <select name="module" id="select_module">
                     <option value="">-- Sélectionner un module --</option>
 
                     <% for (module of modules) { %> 
@@ -42,128 +36,127 @@
                     <% } %>
         
                 </select>
-            </div>
-            <br>
-            <label for="modele_name">Nom du modèle</label>
-            <input name="modele_name" type="text" id="module_name" onkeypress="verifierCaracteres(event); return false;">
-            <br>
-            
-            <!-- form adapté au modèle -->
-            <p>Composants</p>
-            <div id="composantsListe">
-                <!-- Liste des composants -->
-            </div>
+                                    </div>
+                                    <br>
+                                    <label for="modele_name">Nom du modèle</label>
+                                    <input name="modele_name" type="text" id="module_name" onkeypress="verifierCaracteres(event); return false;">
+                                    <br>
 
-        </div>
-        <br>
+                                    <!-- form adapté au modèle -->
+                                    <p>Composants</p>
+                                    <div id="composantsListe">
+                                        <!-- Liste des composants -->
+                                    </div>
 
-        <div style="border: solid black 1px;" onclick="ajoutProduit()"> Ajouter le produit </div>
+                                </div>
+                                <br>
 
-        <!-- Liste des produits ajoutés -->
-        <div>
-            <h3>Produits</h3>
-            <div id="produitsListe">
-                
-            </div>
-        </div>
+                                <div style="border: solid black 1px;" onclick="ajoutProduit()"> Ajouter le produit </div>
 
-        <div style="border: solid black 1px;" onclick="envoisForm()"> Validation du formulaire </div>
+                                <!-- Liste des produits ajoutés -->
+                                <div>
+                                    <h3>Produits</h3>
+                                    <div id="produitsListe">
 
-    </form>
+                                    </div>
+                                </div>
 
-</div>
+                                <div style="border: solid black 1px;" onclick="envoisForm()"> Validation du formulaire </div>
 
-<script>
-   
-   // Affichage des composants du module sélectionné
-    document.getElementById("select_module").onchange = changeListener;
-    function changeListener(){
-        let composantsListe = document.getElementById("composantsListe");
-        var value = this.value;
+                            </form>
 
-        // Vider composantsListe
-        if(composantsListe.innerHTML !== null){
-            composantsListe.innerHTML = "";
-        }
-        
-        // On met en lumière ceux en liens avec le modèle choisi dans composantsListe
-        var htmlContent = "";
+                        </div>
 
-        '<% for (module of modulesDetail) { %>'
-            if('<%= module.row.module_id %>' == value){
-                htmlContent = htmlContent + "<div><%= module.row.composant_nature %></div>";
-            } 
-        '<% } %>'
+                        <script>
+                            // Affichage des composants du module sélectionné
+                            document.getElementById("select_module").onchange = changeListener;
 
-        //console.log("htmlContent = "+htmlContent);
-        composantsListe.innerHTML = htmlContent;
-        //htmlContent = "";
+                            function changeListener() {
+                                let composantsListe = document.getElementById("composantsListe");
+                                var value = this.value;
 
-    }
+                                // Vider composantsListe
+                                if (composantsListe.innerHTML !== null) {
+                                    composantsListe.innerHTML = "";
+                                }
 
-    // Ajouter un produit en session
-    function ajoutProduit() {
-        let module_name = document.getElementById("module_name");
-        let produitsListe = document.getElementById("produitsListe");
-        let select_module = document.getElementById("select_module");
+                                // On met en lumière ceux en liens avec le modèle choisi dans composantsListe
+                                var htmlContent = "";
 
-        if(module_name.value != null && module_name.value != "" && select_module.selectedIndex != 0){
+                                '<% for (module of modulesDetail) { %>'
+                                if ('<%= module.row.module_id %>' == value) {
+                                    htmlContent = htmlContent + "<div><%= module.row.composant_nature %></div>";
+                                }
+                                '<% } %>'
 
-            var produitDiv = document.createElement('div');
-            produitDiv.innerHTML = /*select_module.options[select_module.selectedIndex].text + " - " +*/ module_name.value;
-            produitDiv.className = "produit " + select_module.value;
+                                //console.log("htmlContent = "+htmlContent);
+                                composantsListe.innerHTML = htmlContent;
+                                //htmlContent = "";
 
-            //Insert de la div dans le container produitsListe
-            produitsListe.appendChild(produitDiv);
+                            }
 
-            //Réinitialisation du form
-            select_module.selectedIndex = 0;
-            module_name.value = "";
+                            // Ajouter un produit en session
+                            function ajoutProduit() {
+                                let module_name = document.getElementById("module_name");
+                                let produitsListe = document.getElementById("produitsListe");
+                                let select_module = document.getElementById("select_module");
 
-        } else {
-            window.alert("Vous n'avez pas électionné le module ou entré son nom personnalisé (exemple : 'Mur Extérieur Nord 1')");
-        }
-    }
+                                if (module_name.value != null && module_name.value != "" && select_module.selectedIndex != 0) {
 
-    // Envois du formulaire global pour enregistrement du devis en BDD
-    function envoisForm() {
-        //Récupération de l'id du devis associé en BDD depuis le response
+                                    var produitDiv = document.createElement('div');
+                                    produitDiv.innerHTML = /*select_module.options[select_module.selectedIndex].text + " - " +*/ module_name.value;
+                                    produitDiv.className = "produit " + select_module.value;
 
-        //Récupération des produits (tableau avec classes et nom du module)
-        let produits = document.getElementsByClassName("produit");
-        //console.log("Produits : "+produits);
+                                    //Insert de la div dans le container produitsListe
+                                    produitsListe.appendChild(produitDiv);
 
-        var htmlContent = "";
+                                    //Réinitialisation du form
+                                    select_module.selectedIndex = 0;
+                                    module_name.value = "";
 
-        // Ajout de l'id du projet
-        htmlContent = htmlContent + "<label for='projet_reference'></label> <input type='text' name='projet_reference' value='<%= projet_reference[0].row.last_projet_reference %>'><input/>";
+                                } else {
+                                    window.alert("Vous n'avez pas électionné le module ou entré son nom personnalisé (exemple : 'Mur Extérieur Nord 1')");
+                                }
+                            }
 
-        for (let index = 0; index < produits.length; index++) {
-            htmlContent = htmlContent + "<label for='" + produits[index].textContent + "'></label> <input type='text' name='" + produits[index].textContent + "' value='" + produits[index].className.toString().substr(8) + "' ><input/>";
-        }
+                            // Envois du formulaire global pour enregistrement du devis en BDD
+                            function envoisForm() {
+                                //Récupération de l'id du devis associé en BDD depuis le response
 
-        document.getElementById("produitsListe").innerHTML = "";
-        document.getElementById("produitsListe").innerHTML = htmlContent;
+                                //Récupération des produits (tableau avec classes et nom du module)
+                                let produits = document.getElementsByClassName("produit");
+                                //console.log("Produits : "+produits);
 
-        document.forms["formProduits"].submit();
-    }
+                                var htmlContent = "";
 
-    // Function qui évite les ' et les " dans le nom du module
-    function verifierCaracteres(event) {
-	 		
-        var keyCode = event.which ? event.which : event.keyCode;
-        var touche = String.fromCharCode(keyCode);
-                
-        var champ = document.getElementById('module_name');
-                
-        var caracteres = '\'"';
-                
-        if(caracteres.indexOf(touche) == -1) {
-            champ.value += touche;
-        }
-                
-    }
+                                // Ajout de l'id du projet
+                                htmlContent = htmlContent + "<label for='projet_reference'></label> <input type='text' name='projet_reference' value='<%= projet_reference[0].row.last_projet_reference %>'><input/>";
 
-</script>
+                                for (let index = 0; index < produits.length; index++) {
+                                    htmlContent = htmlContent + "<label for='" + produits[index].textContent + "'></label> <input type='text' name='" + produits[index].textContent + "' value='" + produits[index].className.toString().substr(8) + "' ><input/>";
+                                }
 
-<%- include('footer') %> 
+                                document.getElementById("produitsListe").innerHTML = "";
+                                document.getElementById("produitsListe").innerHTML = htmlContent;
+
+                                document.forms["formProduits"].submit();
+                            }
+
+                            // Function qui évite les ' et les " dans le nom du module
+                            function verifierCaracteres(event) {
+
+                                var keyCode = event.which ? event.which : event.keyCode;
+                                var touche = String.fromCharCode(keyCode);
+
+                                var champ = document.getElementById('module_name');
+
+                                var caracteres = '\'"';
+
+                                if (caracteres.indexOf(touche) == -1) {
+                                    champ.value += touche;
+                                }
+
+                            }
+                        </script>
+
+                        <%- include('footer') %>
