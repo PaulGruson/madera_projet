@@ -1,40 +1,37 @@
+<%- include('head') %>
 
-<%- include('header') %> 
+    <%- include('header') %>
 
-<div>
-    <a href="/">- Accueil -</a>
-    <a href="/conception_devis_projet">- Conception devis -</a>
-    <a href="/consultation_devis">- Consulter devis -</a>
-    <a href="">- Configuration -</a>
-</div>
+        <h1>Consultation devis</h1>
 
-<h1>Consultation devis</h1>
+        <!-- message d'information -->
+        <% if(locals.flash && locals.flash.error) { %>
+            <div>
+                <%= flash.error %>
+            </div>
+            <% } %>
 
-<!-- message d'information -->
-<% if(locals.flash && locals.flash.error) { %> 
-<div>
-    <%= flash.error %>
-</div>
-<% } %> 
+                <% if(locals.flash && locals.flash.success) { %>
+                    <div>
+                        <%= flash.success %>
+                    </div>
+                    <% } %>
 
-<% if(locals.flash && locals.flash.success) { %> 
-<div>
-    <%= flash.success %>
-</div>
-<% } %> 
+                        <div>
+                            <h3>Projets</h3>
 
-<div>
-    <h3>Projets</h3>
+                            <% for (projet of projets) { %>
 
-    <% for (projet of projets) { %> 
+                                <div>
+                                    <a href="/consultation_devis_detail?id=<%= projet.projet_reference %></a> +
+                                        <%= projet.gamme_id %> +
+                                            <%= projet.projet_date %> +
+                                                <%= projet.projet_client %>
+                                </div>
 
-        <div>
-            <a href="/consultation_devis_detail?id=<%= projet.projet_reference %>"><%= projet.gamme_id %> + <%= projet.projet_date %> + <%= projet.projet_client %></a>
-        </div>
+                                <% } %>
 
-    <% } %> 
-
-</div>
+                        </div>
 
 
-<%- include('footer') %> 
+                        <%- include('footer') %>

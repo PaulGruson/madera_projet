@@ -1,0 +1,120 @@
+body {
+    min-height: 100vh;
+    margin: 0;
+}
+
+.text-primary-color {
+    color: rgba(30, 146, 137, 1) !important
+}
+
+.bg-primary-color {
+    background-color: rgba(60, 172, 186, 0.04) !important;
+}
+
+.text-secondary-color {
+    color: rgba(30, 146, 137, 0.5) !important
+}
+
+.text-title1 {
+    font-size: 1.8rem;
+    font-weight: 350;
+}
+
+.text-title2 {
+    font-size: 1.3rem;
+    font-weight: 350;
+    text-decoration: none
+}
+
+.responsive-box {
+    color: darkgray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background: white;
+    border-radius: 15px;
+    width: 40vw;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.shadow {
+    box-shadow: 0 0 6px 0 #36383a;
+}
+
+.button {
+    min-height: 35px;
+    font-size: 20px;
+    background-color: rgba(118, 112, 132, 0.8);
+    color: white;
+    border-style: none
+}
+
+.button:hover {
+    background-color: rgba(118, 112, 132, 0.4);
+    color: rgba(118, 112, 132, 0.8);
+}
+
+.transform:hover {
+    transform: scale(1.03);
+}
+
+@media (max-width: 1500px) {
+    .responsive-box {
+        width: 70vw;
+    }
+}
+
+@media (max-width: 900px) {
+    .responsive-box {
+        width: 80vw;
+    }
+}
+
+
+/* Barre de navigation */
+
+.barreNavigation {
+    overflow: hidden;
+    background-color: #333;
+}
+
+.barreNavigation a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.barreNavigation a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.barreNavigation .barreNavigation-icone {
+    display: none;
+}
+
+
+/* Index */
+
+.accueil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-evenly;
+    min-height: 90vh;
+}
+
+.accueil-container {
+    min-height: 25vh;
+}
+
+.accueil-icone {
+    font-size: 8rem;
+}
