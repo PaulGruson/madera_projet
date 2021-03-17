@@ -2,9 +2,9 @@
 <%- include('header') %> 
 
 <div>
-    <a href="localhost:3000">- Accueil -</a>
-    <a href="localhost:3000/conception_devis_projet">- Conception devis -</a>
-    <a href="localhost:3000/consultation_devis">- Consulter devis -</a>
+    <a href="/">- Accueil -</a>
+    <a href="/conception_devis_projet">- Conception devis -</a>
+    <a href="/consultation_devis">- Consulter devis -</a>
     <a href="">- Configuration -</a>
 </div>
 
@@ -29,7 +29,7 @@
     <% for (projet of projets) { %> 
 
         <div>
-            <%= projet.projet_reference %> + <%= projet.gamme_id %> + <%= projet.projet_date %> + <%= projet.projet_client %>
+            <a href="/consultation_devis_detail?id=<%= projet.projet_reference %>"><%= projet.gamme_id %> + <%= projet.projet_date %> + <%= projet.projet_client %></a>
         </div>
 
     <% } %> 

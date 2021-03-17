@@ -1,0 +1,32 @@
+
+<%- include('header') %> 
+
+<div>
+    <a href="/">- Accueil -</a>
+    <a href="/conception_devis_projet">- Conception devis -</a>
+    <a href="/consultation_devis">- Consulter devis -</a>
+    <a href="">- Configuration -</a>
+</div>
+
+<h1>Consultation devis</h1>
+
+<div>
+    <h3>Projet</h3>
+
+    <p>Nom du projet : <%= projet[0].projet_name %></p>
+    <p>Date : <%= projet[0].projet_date %></p>
+    <p>Client : <%= projet[0].projet_client %></p>
+
+    <h2>Produits</h2>
+    <% for (produit of produits) { %> 
+
+        <div>
+            <%= produit.nom_module %> + <%= produit.module_nature %>
+        </div>
+
+    <% } %> 
+
+</div>
+
+
+<%- include('footer') %> 

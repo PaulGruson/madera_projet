@@ -6,7 +6,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const session = require('express-session')
 const message_flash = require('./middlewares/flash')
-const { response } = require('express')
+const { response, request } = require('express')
 
 // Définition de ejs comme moteur de template
 app.set('view engine', 'ejs')
@@ -65,17 +65,36 @@ app.get('/conception_devis_produit', (request, response) => {
   const Gamme = require('./models/gamme')
 
   Gamme.getModulesFromGamme(request.session.gamme_id, function (modules) {
-
     // Message flash pour prévenir du bon déroulement
     request.flash('success', 'Projet initié')
-
     Gamme.getModulesDetailsFromGamme(request.session.gamme_id, function (modulesDetails) {
-
       response.render('conception_devis_produit', {modules : modules, modulesDetail : modulesDetails, projet_reference : request.session.projet_reference} )
-  
     })
   })
 })
+
+// CONSULTER DEVIS
+app.get('/consultation_devis', (request, response) => {
+  
+  const Projet = require('./models/projet')
+
+  Projet.getAll(function(projets) {
+    response.render('consultation_devis', {projets : projets})
+  })
+
+})
+
+// CONSULTER DEVIS DETAIL
+app.get('/consultation_devis_detail', (request, response) => {
+  const Projet = require('./models/projet')
+
+  Projet.getProjetDetail(request.query.id, function(projet) {
+    Projet.getProduitsToProjet(request.query.id, function(produits) {
+      response.render('consultation_devis_detail', {projet : projet, produits : produits})
+    })
+  })
+})
+
 
 // ACCUEIL
 app.post('/', (request, response) => {
@@ -140,27 +159,40 @@ app.post('/conception_devis_projet', (request, response) => {
 // POST de CONCEPTION DEVIS PRODUIT, envois des données en BDD et retour sur ACCUEIL
 app.post('/conception_devis_produit', (request, response) => {
 
-  console.dir(request.body)
+  //console.dir(request.body)
 
-  let projet_reference = request.body.projet_reference
+  const Projet = require('./models/projet')
 
-  var produits = {}
   let index = 0
   for(var key in request.body) {
     //console.log(" key : " + key + "et sa valeur : " + request.body[key])
     
     if(index >= 3){
-      produits[key] = request.body[key]
+      // Insert en bdd les produit
+      // >= 3 car les 3 premiers éléments de la liste ne sont pas les produits
+
+      // addProductToProjet (module_id, projet_reference, nom_module)
+      // module_id => request.body[key]
+      // projet_reference => request.body.projet_reference
+      // nom_module => key
+
+      //console.log('module_id => '+request.body[key]+', projet_reference => '+request.body.projet_reference+', nom_module => '+key)
+      Projet.addProductToProjet (request.body[key], request.body.projet_reference, key, function () { })
     }
 
     index ++
   }
 
-  for (var key in produits ){
-    console.log(key, produits[key])
-  }
+  response.redirect('/')
+})
 
-  //response.redirect('/')
+// POST de CONSULTER DEVIS
+app.post('/consultation_devis', (request, response) => {
+
+  request.session.projet_reference = req.query.id
+  console.log(req.query.id)
+  response.redirect('/consultation_devis_detail')
+
 })
 
 app.listen(3000)
